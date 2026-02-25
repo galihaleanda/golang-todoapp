@@ -4,28 +4,6 @@ A production-grade Todo application built with Go, following best practices: cle
 
 ---
 
-## 🏗️ Architecture
-
-```
-todo-app/
-├── cmd/api/              # Entrypoint — wires all dependencies
-├── internal/
-│   ├── config/           # Environment-based configuration
-│   ├── domain/           # Entities, interfaces, errors (no framework dependencies)
-│   ├── repository/       # PostgreSQL implementations of domain interfaces
-│   ├── service/          # Business logic use cases
-│   ├── handler/          # HTTP handlers + router (Gin)
-│   ├── middleware/        # Auth, logger, CORS, recovery
-│   └── validator/        # Request validation helpers
-├── pkg/
-│   ├── jwt/              # JWT token manager
-│   ├── hash/             # bcrypt password hashing
-│   ├── response/         # Standardised API envelopes
-│   ├── logger/           # Logrus setup
-│   └── pagination/       # Query parameter parsing
-└── migrations/           # SQL schema migrations
-```
-
 **Design principles applied:**
 - **Hexagonal / Clean Architecture** — domain layer has zero external dependencies
 - **Dependency Inversion** — services depend on interfaces, not concrete repos
@@ -187,17 +165,6 @@ POST /tasks
   "low_priority_pending": 4
 }
 ```
-
----
-
-## 🧪 Testing
-
-```bash
-make test          # Run all tests with race detector
-make test-verbose  # Verbose output
-```
-
-Tests use `testify/mock` — no test database needed. Repositories are mocked at the interface boundary.
 
 ---
 
